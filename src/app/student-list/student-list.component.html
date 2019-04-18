@@ -1,0 +1,36 @@
+<div class="panel panel-primary">
+    <div class="panel-heading" align="center">
+      {{pageTitle}}
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-3">
+          <label class="col-md-2" for="searchName">Search</label>
+          <input class="col-md-2 form-control" id="searchName" type="text" [(ngModel)]='nameFilter' placeholder="Name"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6" *ngIf="nameFilter">
+          <h3>Search Results:</h3>
+        </div>
+      </div>
+      <div class="table-responsive" style='margin-top: 100px'>
+        <table class="table" *ngIf="students && students.length">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let student of students | nameFilterPipe : nameFilter">
+            <td>{{student.id}}</td>
+            <td>{{student.name}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  
