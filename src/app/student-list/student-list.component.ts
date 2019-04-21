@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../_services/student.service';
-import { IStudent } from '../_models/Student';
-import { User } from '../_models/User';
+import { Student } from '../_models/Student';
 
 @Component({
   selector: 'app-student-list',
@@ -11,19 +10,47 @@ import { User } from '../_models/User';
 export class StudentListComponent implements OnInit {
 
   pageTitle: string = 'Student List';
-  errorMessage: string;
-  students: any[];
+  students: Student[];
 
+  selectedStudent: Student;
+  renderViewDialog: boolean = false;
+  renderEditDialog: boolean = false;
+  renderDeleteDialog: boolean = false;
+  errorMessage: string;  
   nameFilter:string;
+  categoryFilter:string;
+  categories = ['All','Domestic','International'];
 
-  constructor(private studentService: StudentService) { }
-
-  ngOnInit() {
-    this.studentService.loadData()
-        .subscribe(student => {
-          this.students = student
-        }, error => this.errorMessage = <any>error);
-    console.log(this.students);
+  constructor(private studentService: StudentService) {
+    this.students = this.studentService.currentStudentValue;
   }
 
+  ngOnInit() { }
+
+  onViewClick(student: Student){
+    this.selectedStudent = student;
+    this.alterViewDialog();
+  }
+
+  onEditClick(student: Student) {
+    this.selectedStudent = student;
+    this.alterEditDialog();
+  }
+
+  onDeleteClick(student: Student){
+    this.selectedStudent = student;
+    this.alterDeleteDialog();
+  }
+
+  alterViewDialog(){
+    this.renderViewDialog = !this.renderViewDialog;
+  }
+
+  alterEditDialog() {
+    this.renderEditDialog = !this.renderEditDialog;
+  }
+
+  alterDeleteDialog() {
+    this.renderDeleteDialog = !this.renderDeleteDialog;
+  }
 }

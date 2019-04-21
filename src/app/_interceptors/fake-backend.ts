@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, of, throwError, BehaviorSubject } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
 import { User } from '../_models/User';
+import { Student } from '../_models/Student';
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
+
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const users: User[] = [
             { id: 1, username: 'admin', password: 'admin', firstName: 'Test', lastName: 'User' }
@@ -41,7 +43,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return next.handle(request);
         }))
         .pipe(materialize())
-        .pipe(delay(500))
+        .pipe(delay(200))
         .pipe(dematerialize());
 
         // private helper functions

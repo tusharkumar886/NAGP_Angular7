@@ -15,18 +15,17 @@
   
   }
   .bgimg-1 {
-    /* background-image: url(""); */
+    background-image: url("../../assets/College-Classroom.jpg");
     min-height: 700px;
   }
   
   .bgimg-2 {
-    /* background-image: url(""); */
-    min-height: 400px;
+    min-height: 300px;
   }
   
   .bgimg-3 {
-    /* background-image: url(""); */
-    min-height: 500px;
+    background-image: url("../../assets/Admission.jpeg");
+    min-height: 600px;
   }
   
   .caption {

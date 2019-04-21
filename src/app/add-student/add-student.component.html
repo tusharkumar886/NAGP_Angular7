@@ -1,3 +1,299 @@
-<p>
-  add-student works!
-</p>
+<div class="container">
+    <div class="row main">
+      <div class="main-login main-center">
+        <h4>Register</h4>
+        <form #studentForm="ngForm">
+          <div class="form-group">
+            <label for="name" class="cols-sm-2 control-label">Name</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                <input type="text" class="form-control" name="name" #name="ngModel" required [(ngModel)]="student.name"
+                       pattern="[a-z A-Z]+" id="name" placeholder="Enter your Name"/>
+              </div>
+              <div *ngIf="name.errors && (name.dirty || name.touched)"
+                   class="alert alert-danger">
+                <div [hidden]="!name.errors.required">
+                  The name is required.
+                </div>
+                <div [hidden]="!name.errors.pattern">
+                  Only alphabets allowed.
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="category" class="cols-sm-2 control-label">Category</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-users" aria-hidden="true"></i></span>
+                <select class="form-control" id="category"
+                       required
+                       [(ngModel)]="student.category" name="category"
+                       #category="ngModel">
+                 <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+               </select>
+              </div>
+              <div *ngIf="category.errors && (category.dirty || category.touched)"
+                   class="alert alert-danger">
+                <div [hidden]="!category.errors.required">
+                  Category is required.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="student.category === 'Domestic'">
+              Documents
+              <div class="form-group">
+                  <div class="cols-sm-10" >
+                      <label class="form-control document">Domicile certificate                       
+                        <input type="checkbox" class="input-checkbox" name="domicile" required
+                            [(ngModel)]="student.domicile" value="checked"
+                            #domicile="ngModel"/>
+                      </label>
+                    <div *ngIf="domicile.errors && (domicile.dirty || domicile.touched)"
+                         class="alert alert-danger">
+                      <div [hidden]="!domicile.errors.required">
+                        Domicile certificate is required.
+                      </div>
+                    </div>
+                  </div>
+    
+                  <div class="cols-sm-10" >
+                      <label class="form-control document">Birth certificate                       
+                        <input type="checkbox" class="input-checkbox" name="birthCertificate" required
+                            [(ngModel)]="student.birthCertificate" value="checked"
+                            #birthCertificate="ngModel"/>
+                      </label>
+                    <div *ngIf="birthCertificate.errors && (birthCertificate.dirty || birthCertificate.touched)"
+                         class="alert alert-danger">
+                      <div [hidden]="!birthCertificate.errors.required">
+                          Birth certificate is required.
+                      </div>
+                    </div>
+                  </div>
+    
+                  <div class="cols-sm-10" >
+                      <label class="form-control document">Marksheets                       
+                        <input type="checkbox" class="input-checkbox" name="marksheet" required
+                            [(ngModel)]="student.marksheet" value="checked"
+                            #marksheet="ngModel"/>
+                      </label>
+                    <div *ngIf="marksheet.errors && (marksheet.dirty || marksheet.touched)"
+                         class="alert alert-danger">
+                      <div [hidden]="!marksheet.errors.required">
+                          Marksheets are required.
+                      </div>
+                    </div>
+                  </div>
+    
+                  <div class="cols-sm-10" >
+                      <label class="form-control">Police Clearance                       
+                        <input type="checkbox" class="input-checkbox" name="policeClear"
+                            [(ngModel)]="student.policeClear" value="checked"
+                            #policeClear="ngModel"/>
+                      </label>
+                  </div>
+    
+                  <div class="cols-sm-10" >
+                      <label class="form-control">Passport                       
+                        <input type="checkbox" class="input-checkbox" name="passport"
+                            [(ngModel)]="student.passport" value="checked"
+                            #passport="ngModel"/>
+                      </label>
+                  </div>
+    
+                  <div class="cols-sm-10" >
+                      <label class="form-control document">Declaration                       
+                        <input type="checkbox" class="input-checkbox" name="declaration" required
+                            [(ngModel)]="student.declaration" value="checked"
+                            #declaration="ngModel"/>
+                      </label>
+                    <div *ngIf="declaration.errors && (declaration.dirty || declaration.touched)"
+                         class="alert alert-danger">
+                      <div [hidden]="!declaration.errors.required">
+                          Declaration certificate is required.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          </div>
+
+          <div *ngIf="student.category === 'International'">
+            Documents
+            <div class="form-group">
+                <div class="cols-sm-10" >
+                    <label class="form-control document">Domicile certificate                       
+                      <input type="checkbox" class="input-checkbox" name="domicile" required
+                          [(ngModel)]="student.domicile" value="checked"
+                          #domicile="ngModel"/>
+                    </label>
+                  <div *ngIf="domicile.errors && (domicile.dirty || domicile.touched)"
+                      class="alert alert-danger">
+                    <div [hidden]="!domicile.errors.required">
+                      Domicile certificate is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cols-sm-10" >
+                    <label class="form-control document">Birth certificate                       
+                      <input type="checkbox" class="input-checkbox" name="birthCertificate" required
+                          [(ngModel)]="student.birthCertificate" value="checked"
+                          #birthCertificate="ngModel"/>
+                    </label>
+                  <div *ngIf="birthCertificate.errors && (birthCertificate.dirty || birthCertificate.touched)"
+                      class="alert alert-danger">
+                    <div [hidden]="!birthCertificate.errors.required">
+                        Birth certificate is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cols-sm-10" >
+                    <label class="form-control document">Marksheets                       
+                      <input type="checkbox" class="input-checkbox" name="marksheet" required
+                          [(ngModel)]="student.marksheet" value="checked"
+                          #marksheet="ngModel"/>
+                    </label>
+                  <div *ngIf="marksheet.errors && (marksheet.dirty || marksheet.touched)"
+                      class="alert alert-danger">
+                    <div [hidden]="!marksheet.errors.required">
+                        Marksheets are required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cols-sm-10" >
+                    <label class="form-control document">Police Clearance                       
+                      <input type="checkbox" class="input-checkbox" name="policeClear" required
+                          [(ngModel)]="student.policeClear" value="checked"
+                          #policeClear="ngModel"/>
+                    </label>
+                  <div *ngIf="policeClear.errors && (policeClear.dirty || policeClear.touched)"
+                      class="alert alert-danger">
+                    <div [hidden]="!policeClear.errors.required">
+                      Police clearance is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cols-sm-10" >
+                    <label class="form-control document">Passport                       
+                      <input type="checkbox" class="input-checkbox" name="passport" required
+                          [(ngModel)]="student.passport" value="checked"
+                          #passport="ngModel"/>
+                    </label>
+                  <div *ngIf="passport.errors && (passport.dirty || passport.touched)"
+                      class="alert alert-danger">
+                    <div [hidden]="!passport.errors.required">
+                        Passport is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cols-sm-10" >
+                    <label class="form-control document">Declaration                       
+                      <input type="checkbox" class="input-checkbox" name="declaration" required
+                          [(ngModel)]="student.declaration" value="checked"
+                          #declaration="ngModel"/>
+                    </label>
+                  <div *ngIf="declaration.errors && (declaration.dirty || declaration.touched)"
+                      class="alert alert-danger">
+                    <div [hidden]="!declaration.errors.required">
+                        Declaration certificate is required.
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="date" class="cols-sm-2 control-label">Date of Birth</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                <input type="date" class="form-control" name="date" [(ngModel)]="student.dateOfBirth" id="date"
+                       required (change)="validAge()" #dob="ngModel"/>
+              </div>
+              <div *ngIf="dob.errors && (dob.dirty || dob.touched)"
+                   class="alert alert-danger">
+                <div [hidden]="!dob.errors.required">
+                  Date of birth is required.
+                </div>
+              </div>
+              <div *ngIf="validDOB" class="alert alert-danger">
+                <div>
+                  Age is under 5
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="form-group">
+              <label for="father" class="cols-sm-2 control-label">Father's name</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  
+              <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" name="father" #father="ngModel" [(ngModel)]="student.father"
+                       pattern="[a-z A-Z]+" id="father" placeholder="Enter your father name"/>
+                </div>
+                  <div *ngIf="name.errors && (name.dirty || name.touched)"
+                    class="alert alert-danger">
+                  <div [hidden]="!father.errors.pattern">
+                    Only alphabets allowed.
+                  </div>
+                </div>
+              </div>
+          </div>
+          
+          <div class="form-group">
+              <label for="mather" class="cols-sm-2 control-label">Mother's name</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  
+              <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" name="mother" #mother="ngModel" [(ngModel)]="student.mother"
+                       pattern="[a-z A-Z]+" id="mother" placeholder="Enter your mother name"/>
+                </div>
+                  <div *ngIf="mother.errors && (mother.dirty || mother.touched)"
+                    class="alert alert-danger">
+                  <div [hidden]="!mother.errors.pattern">
+                    Only alphabets allowed.
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label for="score" class="cols-sm-2 control-label">Last Score</label>
+              <div class="cols-sm-10">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-percent" aria-hidden="true"></i></span>
+                    <input type="number" class="form-control" name="score" pattern="^(?!0*(\.0+)?$)(\d+|\d*\.\d+)$"
+                           [(ngModel)]="student.score" id="score" #score="ngModel"/>
+                  </div>
+                  <div *ngIf="score.errors && (score.dirty || score.touched)"
+                       class="alert alert-danger">
+                    <div [hidden]="!score.errors.pattern">
+                      Invalid Score
+                    </div>
+                  </div>
+              </div>      
+          </div>
+
+          <div class="form-group ">
+            <button type="submit" (click)="addStudent(student)"
+                    [disabled]="!studentForm.form.valid || validDOB"
+                    class="btn btn-primary btn-lg btn-block login-button">
+              Register
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

@@ -1,6 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {IStudent} from "../_models/Student";
-import { User } from '../_models/User';
 
 @Pipe({
   name: 'nameFilterPipe'

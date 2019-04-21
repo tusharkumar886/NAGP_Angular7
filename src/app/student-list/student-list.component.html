@@ -5,32 +5,59 @@
     <div class="panel-body">
       <div class="row">
         <div class="col-md-3">
-          <label class="col-md-2" for="searchName">Search</label>
+          <label class="col-md-2" for="searchName">Name</label>
           <input class="col-md-2 form-control" id="searchName" type="text" [(ngModel)]='nameFilter' placeholder="Name"/>
+        </div>
+        <div class="col-md-3">
+            <label class="col-md-2" for="searchcategory">Category</label>
+            <select class="col-md-2 form-control" id="searchcategory" [(ngModel)]="categoryFilter">
+                 <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+            </select>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6" *ngIf="nameFilter">
+        <div class="col-md-6" style='margin-top: 50px' *ngIf="nameFilter || categoryFilter">
           <h3>Search Results:</h3>
         </div>
       </div>
-      <div class="table-responsive" style='margin-top: 100px'>
+      <div class="table-responsive" style='margin-top: 20px'>
         <table class="table" *ngIf="students && students.length">
           <thead>
           <tr>
-            <th>ID</th>
             <th>Name</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let student of students | nameFilterPipe : nameFilter">
-            <td>{{student.id}}</td>
+          <tr *ngFor="let student of students | nameFilterPipe : nameFilter | categoryFilterPipe : categoryFilter">
             <td>{{student.name}}</td>
+            <div>
+              <td>
+                  <button type="button" class="btn btn-success" data-toggle="modal"
+                          title="View" data-target="#exampleModal" (click)="onViewClick(student)"><i class="fa fa-eye" aria-hidden="true"></i></button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-primary" data-toggle="modal"
+                        title="Edit" data-target="#exampleModal" (click)="onEditClick(student)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+              </td>
+              <td>
+                  <button type="button" class="btn btn-danger" data-toggle="modal"
+                          title="Delete" data-target="#exampleModal" (click)="onDeleteClick(student)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+              </td>
+          </div>
           </tr>
           </tbody>
         </table>
       </div>
     </div>
+    <div *ngIf="renderViewDialog">
+        <app-view-student [student]="selectedStudent" (emitter)="alterViewDialog()"></app-view-student>
+    </div>
+    <div *ngIf="renderEditDialog">
+      <app-edit-student [student]="selectedStudent" (emitter)="alterEditDialog()"></app-edit-student>
+    </div>
+    <div *ngIf="renderDeleteDialog">
+        <app-delete-student [student]="selectedStudent" (emitter)="alterDeleteDialog()"></app-delete-student>
+      </div>
   </div>
   
   

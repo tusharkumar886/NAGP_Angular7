@@ -1,0 +1,119 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Details for {{student.name}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="emitOutput()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="main-login main-center">
+          <form #studentEditForm="ngForm">
+            <div class="form-group">
+              <label for="name" class="cols-sm-2 control-label">Name</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                  <input type="text" class="form-control" name="name" #name="ngModel" required [(ngModel)]="student.name"
+                         pattern="[a-z A-Z]+" id="name" placeholder="Enter your Name"/>
+                </div>
+                <div *ngIf="name.errors && (name.dirty || name.touched)"
+                     class="alert alert-danger">
+                  <div [hidden]="!name.errors.required">
+                    The name is required.
+                  </div>
+                  <div [hidden]="!name.errors.pattern">
+                    Only alphabets allowed.
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="form-group">
+              <label for="email" class="cols-sm-2 control-label">Email</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                  <input type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email"
+                         #email="ngModel" [(ngModel)]="student.emailId"
+                         id="email"
+                         placeholder="Enter your Email" required/>
+                </div>
+                <div *ngIf="email.errors && (email.dirty || email.touched)"
+                     class="alert alert-danger">
+                  <div [hidden]="!email.errors.required">
+                    Email id required.
+                  </div>
+                  <div [hidden]="!email.errors.pattern">
+                    Enter a valid email.
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="form-group">
+              <label for="date" class="cols-sm-2 control-label">Date of Birth</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                  <input type="date" class="form-control" name="date" [(ngModel)]="student.dateOfBirth" id="date"
+                         required (change)="validAge()" #dob="ngModel"/>
+                </div>
+                <div *ngIf="dob.errors && (dob.dirty || dob.touched)"
+                     class="alert alert-danger">
+                  <div [hidden]="!dob.errors.required">
+                    Date of birth is required.
+                  </div>
+                </div>
+                <div *ngIf="validDOB" class="alert alert-danger">
+                  <div>
+                    Age is under 18
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="form-group">
+              <label for="contactNumber" class="cols-sm-2 control-label">Contact Number</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                  <input type="number" class="form-control" name="contactNumber" required
+                         pattern="\d{10}" [(ngModel)]="student.contactNumber" id="contactNumber"
+                         placeholder="Enter your Contact Number" #contactNumber="ngModel"/>
+                </div>
+                <div *ngIf="contactNumber.errors && (contactNumber.dirty || contactNumber.touched)"
+                     class="alert alert-danger">
+                  <div [hidden]="!contactNumber.errors.required">
+                    Contact number is required.
+                  </div>
+                  <div [hidden]="!contactNumber.errors.pattern">
+                    Contact is invalid(10 digits).
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="form-group">
+              <label for="imagePath" class="cols-sm-2 control-label">Id Proof</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="emitOutput()">Close</button>
+        <button type="button" class="btn btn-primary" [disabled]="!studentEditForm.form.valid" data-dismiss="modal"
+                (click)="editStudent()">
+                Update
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

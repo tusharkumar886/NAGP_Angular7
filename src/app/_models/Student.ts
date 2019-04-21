@@ -1,8 +1,15 @@
-export interface IStudent{
+export class Student{
   id:number;
   name: string;
+  category: string;
+  domicile: boolean;
+  birthCertificate: boolean;
+  marksheet: boolean;
+  policeClear: boolean;
+  passport: boolean;
+  declaration: boolean;
   dateOfBirth: Date;
-  contactNumber:number;
-  emailId:string;
-  image:string;
+  father: string;
+  mother: string;
+  score: number;
 }

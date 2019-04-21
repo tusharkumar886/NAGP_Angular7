@@ -12,6 +12,10 @@ import { StudentListComponent } from './student-list/student-list.component';
 import { JwtInterceptor, ErrorInterceptor, fakeBackendProvider } from './_interceptors';
 import { NameFilterPipe } from './_filters/namefilter.pipe';
 import { AddStudentComponent } from './add-student/add-student.component';
+import { EditStudentComponent } from './edit-student/edit-student.component';
+import { DeleteStudentComponent } from './delete-student/delete-student.component';
+import { ViewStudentComponent } from './view-student/view-student.component';
+import { CategoryFilterPipe } from './_filters/category-filter.pipe';
 
 
 @NgModule({
@@ -21,7 +25,11 @@ import { AddStudentComponent } from './add-student/add-student.component';
     LoginComponent,
     StudentListComponent,
     NameFilterPipe,
-    AddStudentComponent
+    AddStudentComponent,
+    EditStudentComponent,
+    DeleteStudentComponent,
+    ViewStudentComponent,
+    CategoryFilterPipe
   ],
   imports: [
     BrowserModule,
