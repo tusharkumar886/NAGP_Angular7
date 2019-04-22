@@ -1,10 +1,10 @@
 # MyStudents
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
+This project was created for NAGP.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm install` to install all noded modules and `ng serve` from angular cli for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
