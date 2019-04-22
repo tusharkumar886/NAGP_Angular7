@@ -1,6 +1,6 @@
 # MyStudents
 
-This project was created for NAGP.
+This project was created for NAGP. For running site https://tusharnagarro.github.io/NAGP_Angular7/
 
 ## Development server
 
