@@ -36,7 +36,9 @@ export class AddStudentComponent implements OnInit {
 
   addStudent(student: Student){
     if(!student.id){
-      this.student.score = Number.parseFloat(this.student.score.toFixed(2));
+      if(student.score){
+        this.student.score = Number.parseFloat(this.student.score.toFixed(2));
+      }
       this.postStudent(student);
     }
     this.route.navigate(['/studentList']);

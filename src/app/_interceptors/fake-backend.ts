@@ -43,7 +43,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return next.handle(request);
         }))
         .pipe(materialize())
-        .pipe(delay(200))
+        .pipe(delay(500))
         .pipe(dematerialize());
 
         // private helper functions

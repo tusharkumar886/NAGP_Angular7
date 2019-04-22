@@ -2,9 +2,43 @@
      aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Details for {{student.name}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="emitOutput()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
       <div class="modal-body">
-        {{student.name}}
-        {{student.dateOfBirth}}
+        Name: {{student.name}}<br>
+        Category: {{student.category}}<br>
+        <div *ngIf="student.domicile">
+            Domicile Certificate: Yes
+        </div> 
+        <div *ngIf="student.birthCertificate">
+            Birth Certificate: Yes
+        </div>
+        <div *ngIf="student.marksheet">
+            Marksheets: Yes
+        </div>
+        <div *ngIf="student.policeClear">
+            Police Clearance: Yes
+        </div>
+        <div *ngIf="student.passport">
+            Passport: Yes
+        </div>
+        <div *ngIf="student.declaration">
+            Declaration: Yes
+        </div>
+        DOB: {{student.dateOfBirth}}<br>
+        <div *ngIf="student.father">
+            Father's name: {{student.father}}
+        </div>
+        <div *ngIf="student.mother">
+            Mother's name:{{student.mother}}
+        </div>
+        <div *ngIf="student.score">
+          Last Score: {{student.score}}
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="emitOutput()">Close</button>

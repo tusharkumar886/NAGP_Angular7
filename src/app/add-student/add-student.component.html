@@ -241,7 +241,7 @@
                     <input type="text" class="form-control" name="father" #father="ngModel" [(ngModel)]="student.father"
                        pattern="[a-z A-Z]+" id="father" placeholder="Enter your father name"/>
                 </div>
-                  <div *ngIf="name.errors && (name.dirty || name.touched)"
+                  <div *ngIf="father.errors && (father.dirty || father.touched)"
                     class="alert alert-danger">
                   <div [hidden]="!father.errors.pattern">
                     Only alphabets allowed.

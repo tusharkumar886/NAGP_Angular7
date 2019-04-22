@@ -40,3 +40,14 @@
     font-size: 1.2em;
   }
   
+  .ng-invalid:not(form){
+    border-right: 5px solid red;
+  }
+
+  .input-checkbox{
+    margin-left: 10px;
+  }
+
+.document{
+  border-right: 5px solid red;
+}
