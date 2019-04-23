@@ -33,11 +33,11 @@ export class StudentService {
   }
 
   public postData(student: Student){
-    student.id = this.currentStudentValue.length + 1;
     if(this.currentStudentValue === null){
       localStorage.setItem('students', JSON.stringify([]));
       this.currentStudentSubject.next([]);
     }
+    student.id = this.currentStudentValue.length + 1;
     this.addData(student);
     localStorage.setItem('students', JSON.stringify(this.currentStudentValue));
   }
